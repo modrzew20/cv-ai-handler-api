@@ -1,0 +1,6 @@
+Przeanalizuj poniższe CV napisz na w nim poprawić.
+
+CV:
+---
+%s
+---
