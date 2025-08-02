@@ -18,8 +18,8 @@ RUN ./mvnw dependency:go-offline -B
 # Copy source code
 COPY src ./src
 
-# Build the application
-RUN ./mvnw clean package -DskipTests
+# Build the application (compile and create executable JAR without triggering Docker plugin)
+RUN ./mvnw clean compile -DskipTests && ./mvnw spring-boot:repackage -DskipTests
 
 # Create a new stage for the runtime
 FROM openjdk:24-jdk-slim
