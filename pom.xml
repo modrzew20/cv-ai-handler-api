@@ -10,7 +10,7 @@
     </parent>
     <groupId>dm.java.it</groupId>
     <artifactId>cv-ai-handler</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3</version>
     <name>cv-ai-handler</name>
     <description>cv-ai-handler</description>
     <url/>
