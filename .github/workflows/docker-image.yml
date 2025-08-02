@@ -63,6 +63,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
+        file: ./target/docker/cv-ai-handler/${{ steps.meta.outputs.version }}/build/Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         cache-from: type=gha
