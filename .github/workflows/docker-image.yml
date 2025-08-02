@@ -21,12 +21,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Set up JDK 24
-      uses: actions/setup-java@v4
-      with:
-        java-version: '24'
-        distribution: 'temurin'
-        
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       
@@ -63,7 +57,6 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./target/docker/cv-ai-handler/${{ steps.meta.outputs.version }}/build/Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         cache-from: type=gha
@@ -72,22 +65,8 @@ jobs:
         build-args: |
           VERSION=${{ steps.meta.outputs.version }}
           
-    - name: Build with Maven and create Docker image
-      run: |
-        # Build JAR with Maven
-        mvn clean package -DskipTests
-        
-        # Build Docker image using Maven plugin
-        mvn docker:build
-        
-        # Tag the image
-        docker tag cv-ai-handler:${{ steps.meta.outputs.version }} ${{ steps.meta.outputs.tags }}
-        
-        # Push to Google Artifact Registry
-        docker push ${{ steps.meta.outputs.tags }}
-        
     - name: Output image info
       run: |
         echo "✅ Docker image built and pushed successfully!"
-        echo "�� Image: ${{ steps.meta.outputs.tags }}"
-        echo "�� Registry: https://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
+        echo "📦 Image: ${{ steps.meta.outputs.tags }}"
+        echo "🏪 Registry: https://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
