@@ -13,3 +13,18 @@ spring:
             name: CheckCVSchema
             schema:  '{"type":"object","properties":{"steps":{"type":"array","items":{"type":"object","properties":{"explanation":{"type":"string"},"output":{"type":"string"}},"required":["explanation","output"],"additionalProperties":false}},"final_answer":{"type":"string"}},"required":["steps","final_answer"],"additionalProperties":false}'
             strict: true
+  security:
+    oauth2:
+          client:
+            registration:
+              google:
+                client-id: ${GOOGLE_CLIENT_ID:fake-client-id}
+                client-secret: ${GOOGLE_CLIENT_SECRET:fake-client-secret}
+                scope:
+                  - openid
+                  - profile
+                  - email
+
+logging:
+  level:
+    root: INFO
