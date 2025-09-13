@@ -25,6 +25,18 @@ spring:
                   - profile
                   - email
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+clients:
+  nofluffjobs:
+    base-url: https://nofluffjobs.com
+
 logging:
   level:
     root: INFO
